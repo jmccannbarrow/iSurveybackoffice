@@ -1,0 +1,48 @@
+
+<center>
+
+   <h1>Questions</h1>
+
+</center>
+
+ 
+
+<div class="container">
+
+ 
+
+   <table class="table table-striped" id="mytable">
+
+     <thead>
+
+       <tr>
+
+         <th>Question</th>
+
+           
+       </tr>
+
+     </thead>
+
+     <tbody>
+
+       {{#each surveyinstancequestions}}
+
+       <tr>
+
+        <td> {{ questiondescription }} </td> 
+         <td> <a href="/reportsurveyinstanceanswers/{{ questionid }}/{{surveyinstanceid}}" >Answer</a></td> 
+
+      
+
+                
+
+       </tr>
+
+       {{/each}}
+
+     </tbody>
+
+   </table>
+
+</div>

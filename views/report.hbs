@@ -1,0 +1,61 @@
+
+<center>
+
+   <h1>Reports</h1>
+
+</center>
+
+ 
+
+<div class="container">
+
+ 
+
+ 
+
+ 
+
+   <table class="table table-striped" id="mytable">
+
+     <thead>
+
+       <tr>
+
+         <th>Survey ID</th>
+
+         <th>Survey Name</th>
+
+           <th>Survey Description</th>
+
+             <th>No. Of Surveys Taken</th>
+
+       </tr>
+
+     </thead>
+
+     <tbody>
+
+       {{#each report}}
+
+       <tr>
+
+         <td>{{ surveyid }}</td>
+
+         <td>{{ surveyname }}</td>       
+
+         <td>{{ surveydescription }}</td>
+
+        <td> <a href="/reportsurveyinstances/{{ surveyid }}" >{{ responses }}</a></td> 
+
+
+       
+
+       </tr>
+
+       {{/each}}
+
+     </tbody>
+
+   </table>
+
+</div>

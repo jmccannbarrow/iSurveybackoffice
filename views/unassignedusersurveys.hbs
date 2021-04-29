@@ -1,0 +1,100 @@
+
+<center>
+  <h1>UnAssigned User Surveys</h1>
+</center>
+
+
+<div class="container">
+
+ 
+  <table class="table table-striped" id="mytable">
+
+    <thead>
+
+      <tr>
+
+       <th>User ID</th>
+        <th>Survey ID</th>
+        <th>Survey Name</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      {{#each survey}}
+
+      <tr>
+     
+      <td>{{ userid }}</td>
+        <td>{{ surveyid }}</td>
+        <td>{{ surveyname }}</td>
+
+        <td> <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-surveyid="{{ surveyid }}" data-userid="{{ userid }}">Assign</a></td>
+
+
+      </tr>
+
+      {{/each}}
+
+    </tbody>
+
+  </table>
+
+
+
+</div>
+
+<!-- Modal Delete Survey-->
+<form id="add-row-form" action="/assignsurvey" method="post">
+  <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="myModalLabel">Assign Survey</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <strong>Are you sure to assign this survey?</strong>
+        </div>
+        <div class="modal-footer">
+          <input type="hidden" name="surveyid" class="form-control id2" required>
+           <input type="hidden" name="userid" class="form-control id3" required>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success">Assign</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+<script>
+
+  //$(document).ready(function () {
+    
+    //showing delete record modal
+    $('#mytable').on('click', '.delete', function () {
+
+
+      var surveyid = $(this).data('surveyid');
+      var userid = $(this).data('userid');
+      $('#DeleteModal').modal('show');
+      $('.id2').val(surveyid);
+      $('.id3').val(userid);
+    });
+
+    
+  //});
+
+  
+</script>

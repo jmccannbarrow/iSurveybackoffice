@@ -1,0 +1,98 @@
+
+<center>
+  <h1>UnAssigned Survey Questions</h1>
+</center>
+
+
+<div class="container">
+
+ 
+  <table class="table table-striped" id="mytable">
+
+    <thead>
+
+      <tr>
+
+        <th>Survey ID</th>
+        <th>Question ID</th>
+        <th>Question Description</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      {{#each question}}
+
+      <tr>
+        <td>{{ surveyid }}</td>
+        <td>{{ questionid }}</td>
+        <td>{{ questiondescription }}</td>
+
+
+        <td> <a href="javascript:void(0);" class="btn btn-sm btn-info delete" data-questionid="{{ questionid }}" data-surveyid="{{ surveyid }}">Assign</a></td>
+
+
+      </tr>
+
+      {{/each}}
+
+    </tbody>
+
+  </table>
+
+
+
+
+
+<!-- Modal Delete Survey-->
+<form id="add-row-form" action="/assignquestion" method="post">
+  <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="myModalLabel">Assign Question</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <strong>Are you sure to assign this question?</strong>
+        </div>
+        <div class="modal-footer">
+          <input type="hidden" name="surveyid" class="surveyid" required>
+           <input type="hidden" name="questionid" class="questionid" required>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success">Assign</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+<script>
+
+  //showing delete record modal
+    $('#mytable').on('click', '.delete', function () {
+
+
+      var surveyid = $(this).data('surveyid');
+      var questionid = $(this).data('questionid');
+      $('#DeleteModal').modal('show');
+      $('.surveyid').val(surveyid);
+      $('.questionid').val(questionid);
+    });
+
+    
+
+
+  
+</script>
