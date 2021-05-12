@@ -1,0 +1,84 @@
+
+<center>
+
+   <h1>Survey Details</h1>
+
+</center>
+
+ 
+
+<div class="container">
+
+ 
+
+   <table class="table table-striped" id="myheadertable">
+
+     <thead>
+
+       <tr>
+
+          <th>Survey Name</th>  
+          <th>Survey Description</th>   
+        
+       </tr>
+
+     </thead>
+
+     <tbody>
+
+       {{#each surveydetails}}
+
+       <tr>
+
+  <td>{{ surveyname }}</td>
+  <td>{{ surveydescription }}</td>
+                      
+
+       </tr>
+
+       {{/each}}
+
+     </tbody>
+
+   </table>
+
+   <table class="table table-striped" id="myquestionstable">
+
+     <thead>
+
+       <tr>
+
+          <th>Question</th>  
+        
+       </tr>
+
+     </thead>
+
+     <tbody>
+
+       {{#each questiondetails}}
+
+       <tr>
+
+  <td>{{ questiondescription }}</td>
+
+                   <td>
+<table>
+<tr>
+  <td>Answers here</td>
+</tr>
+
+</table>
+
+                   </td>   
+
+       </tr>
+
+       {{/each}}
+
+     </tbody>
+
+   </table>
+
+
+</div>

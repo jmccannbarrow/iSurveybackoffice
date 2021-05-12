@@ -27,6 +27,8 @@
 
            <th>Survey Description</th>
 
+            <th>Survey Details</th>
+
              <th>No. Of Surveys Taken</th>
 
        </tr>
@@ -39,15 +41,15 @@
 
        <tr>
 
-         <td>{{ surveyid }}</td>
+          <td>{{ surveyid }}</td>
 
          <td>{{ surveyname }}</td>       
 
          <td>{{ surveydescription }}</td>
 
+          <td> <a href="/reportsurveydetails/{{ surveyid }}" >Click Here</a></td> 
+
         <td> <a href="/reportsurveyinstances/{{ surveyid }}" >{{ responses }}</a></td> 
-
-
        
 
        </tr>
