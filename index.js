@@ -51,7 +51,9 @@ const conn = mysql.createConnection({
 
   password: 'root',
 
-  database: 'isurvey'
+  database: 'isurvey',
+
+  multipleStatements: true
 
 });
 
@@ -287,6 +289,36 @@ app.get('/reports', (req, res) => {
   });
 
 });
+
+
+app.get('/reportsurveydetails/:surveyid', (req, res) => {
+
+
+  //let sql = "select  questions.questiondescription,  surveyinstances.answer,   surveyinstances.surveyid,    surveys.surveyname,    surveys.surveydescription,    users.userfullname    from  surveyinstances    inner join    users on surveyinstances.userid = users.userid    inner join  surveys on surveyinstances.surveyid = surveys.surveyid  inner join  questions on  surveyinstances.questionid = questions.questionid  where surveyinstances.surveyid = " + req.params.surveyid + "";
+ // let sql1 = "select  surveys.surveyid,    surveys.surveyname,    surveys.surveydescription from  surveys where surveys.surveyid = " + req.params.surveyid + "";
+ //let sql = "select  DISTINCT questions.questiondescription,  surveyinstances.answer  from  surveyinstances  inner join questions on  surveyinstances.questionid = questions.questionid  where surveyinstances.surveyid = " + req.params.surveyid + "";
+  let sql = "select  surveys.surveyid,    surveys.surveyname,    surveys.surveydescription from  surveys where surveys.surveyid = ?;select  DISTINCT questions.questiondescription from  surveyinstances  inner join questions on  surveyinstances.questionid = questions.questionid  where surveyinstances.surveyid = ?";
+ // let sql = "select  surveys.surveyid,    surveys.surveyname,    surveys.surveydescription from  surveys where surveys.surveyid = ?;select  DISTINCT questions.questiondescription, questions.questionid from  surveyinstances  inner join questions on  surveyinstances.questionid = questions.questionid  where surveyinstances.surveyid = ? order by questions.questionid";
+  
+  
+  //let query = conn.query(sql, (err, results) => {
+  let query = conn.query(sql, [req.params.surveyid, req.params.surveyid ], (err, results, fields) => {
+ 
+    if (err) throw err;
+
+    res.render('reportsurveydetails', {
+
+      surveydetails: results[0],
+      questiondetails: results[1]
+
+    });
+
+  });
+
+});
+
+
+
 
 app.get('/reportsurveyinstances/:surveyid', (req, res) => {
 
